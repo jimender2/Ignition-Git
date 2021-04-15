@@ -135,7 +135,6 @@ public abstract class AbstractScriptModule implements Scripts
 	public List listTags(String path) {
 		Path repoPath = Paths.get(path);
 		List<String> tagList = new ArrayList<String>();
-		tagList.add("test");
 		try {
 			Git git = Git.open(repoPath.toFile());
 			AbstractScriptModule.log.error((Object)"Success");
