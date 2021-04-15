@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 import org.eclipse.jgit.*;
@@ -21,6 +23,8 @@ import org.eclipse.jgit.api.Status;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.lib.Repository;
 
 public abstract class AbstractScriptModule implements Scripts
 {
@@ -169,45 +173,60 @@ public abstract class AbstractScriptModule implements Scripts
 		return tagList;
 	}
 
-    // @Override
-	// public List walkAllCommits(String path) {
-	// 	Path repoPath = Paths.get(path);
-	// 	List<String> tagList = new ArrayList<String>();
-	// 	try {
-	// 		Git git = Git.open(repoPath.toFile());
-	// 		AbstractScriptModule.log.error((Object)"Success");
-    //         Iterable<RevCommit> commits = git.log().all().call();
-    //         for (RevCommit commit : commits) {
-    //             tagList.add(commit.toString());
-    //         }
-    //         git.close();
-	// 	} catch (Exception e) {
-	// 		AbstractScriptModule.log.error((Object)"Error");
-	// 		AbstractScriptModule.log.error((Object)e);
-	// 	}
-	// 	return tagList;
-	// }
+    @Override
+	public List walkAllCommits(String path) {
+		Path repoPath = Paths.get(path);
+		List<String> tagList = new ArrayList<String>();
+		try {
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object)"Success");
+            Iterable<RevCommit> commits = git.log().all().call();
+            for (RevCommit commit : commits) {
+                tagList.add(commit.toString());
+            }
+            git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return tagList;
+	}
 
-    // @Override
-	// public List walkCommitsOnBranch(String path, String branch) {
-	// 	Path repoPath = Paths.get(path);
-	// 	List<String> tagList = new ArrayList<String>();
-	// 	try {
-	// 		Git git = Git.open(repoPath.toFile());
-	// 		AbstractScriptModule.log.error((Object)"Success");
-    //         ObjectId branchId = repository.resolve("HEAD");
-    //         Iterable<RevCommit> commits = git.log().add(branchId).call();
-    //         for (RevCommit commit : commits) {
-    //             tagList.add(commit.toString());
-    //         }
-    //         git.close();
-	// 	} catch (Exception e) {
-	// 		AbstractScriptModule.log.error((Object)"Error");
-	// 		AbstractScriptModule.log.error((Object)e);
-	// 	}
-	// 	return tagList;
-	// }
+	@Override
+	public List getConflictingFiles(String path) {
+		Path repoPath = Paths.get(path);
+		List<String> fileList = new ArrayList<String>();
+		try {
+			Git git = Git.open(repoPath.toFile());
+			Status status = git.status().call();
+            Set<String> conflicting = status.getConflicting();
+            for(String conflict : conflicting) {
+            	fileList.add(conflict.toString());
+            }
+            git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return fileList;
+	}
 
-
-
+	@Override
+	public List getAddedFiles(String path) {
+		Path repoPath = Paths.get(path);
+		List<String> fileList = new ArrayList<String>();
+		try {
+			Git git = Git.open(repoPath.toFile());
+			Status status = git.status().call();
+            Set<String> added = status.getAdded();
+            for(String add : added) {
+            	fileList.add(add.toString());
+            }
+            git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return fileList;
+	}
 }

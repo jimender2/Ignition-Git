@@ -12,6 +12,7 @@ public interface Scripts
 	int clone(String path, String url);
     List listTags(String path);
     List listBranches(String path);
-
-
+    List walkAllCommits(String path);
+    List getConflictingFiles(String path);
+    List getAddedFiles(String path);
 }
