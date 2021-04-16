@@ -1,6 +1,7 @@
 package net.jimender2.ignition.git.common;
 
 import java.util.List;
+import com.inductiveautomation.ignition.common.Dataset;
 
 public interface Scripts
 {
@@ -15,4 +16,8 @@ public interface Scripts
     List walkAllCommits(String path);
     List getConflictingFiles(String path);
     List getAddedFiles(String path);
+    Dataset getAllCommitsInfo(String path);
+    int pull(String path);
+    int pull(String path, String username, String password);
+    Dataset getUncommitedChanges(String path);
 }

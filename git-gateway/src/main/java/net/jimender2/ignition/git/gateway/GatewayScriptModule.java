@@ -14,18 +14,11 @@ import com.inductiveautomation.ignition.gateway.datasource.SRConnection;
 
 public class GatewayScriptModule extends AbstractScriptModule
 {
-    private final GatewayScriptModule scriptModule;
-	private final Logger log;
-	private GatewayContext context;
+    // private final GatewayScriptModule scriptModule;
+	// private final Logger log;
 
-	public GatewayScriptModule() {
-		this.scriptModule = new GatewayScriptModule();
-		this.log = Logger.getLogger((Class)this.getClass());
-	}
-	
-	// @Override
-	// public void setup(final GatewayContext gatewayContext) {
-	// 	this.context = gatewayContext;
+	// public GatewayScriptModule() {
+	// 	this.scriptModule = new GatewayScriptModule();
+	// 	this.log = Logger.getLogger((Class)this.getClass());
 	// }
-	
 }
