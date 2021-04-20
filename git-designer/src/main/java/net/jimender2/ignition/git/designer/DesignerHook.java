@@ -10,6 +10,13 @@ import com.inductiveautomation.ignition.designer.model.DesignerContext;
 import com.inductiveautomation.ignition.common.script.hints.PropertiesFileDocProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.inductiveautomation.ignition.common.licensing.LicenseMode;
+import com.inductiveautomation.ignition.common.licensing.LicenseState;
+import com.inductiveautomation.ignition.common.script.ScriptManager;
+import com.inductiveautomation.ignition.common.script.hints.PropertiesFileDocProvider;
+import com.inductiveautomation.ignition.designer.model.AbstractDesignerModuleHook;
+import com.inductiveautomation.ignition.designer.model.DesignerContext;
+
 
 public class DesignerHook extends AbstractDesignerModuleHook {
 

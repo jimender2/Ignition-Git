@@ -1,2 +1,2 @@
 net/jimender2/ignition/git/gateway/GatewayScriptModule.class
-net/jimender2/ignition/git/gateway/GatewayHook.class
+net/jimender2/ignition/git/gateway/ScriptingGatewayHook.class

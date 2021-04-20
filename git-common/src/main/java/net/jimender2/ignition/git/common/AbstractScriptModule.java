@@ -135,6 +135,21 @@ public abstract class AbstractScriptModule implements Scripts
 		return 0;
 	}
 
+	@Override
+	public int commit(String path, String commitMsg, String author, String email) {
+		Path repoPath = Paths.get(path);
+		try {
+            Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object)"Success");
+			git.commit().setMessage(commitMsg).setAuthor(author, email).call();
+            git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
     @Override
 	public int clone(String path, String url) {
 		try {
@@ -213,7 +228,6 @@ public abstract class AbstractScriptModule implements Scripts
 	public Dataset getAllCommitsInfo(String path) {
 		Dataset ds = null;
 		Path repoPath = Paths.get(path);
-		List<List> tagList = new ArrayList<List>();
 		List<String> colNames = new ArrayList<String>();
 		colNames.add("shortMsg");
 		colNames.add("commitTime");
@@ -409,6 +423,23 @@ public abstract class AbstractScriptModule implements Scripts
 	}
 
 	@Override
+	public String listCurrentBranch(String path) {
+		Path repoPath = Paths.get(path);
+		List<String> fileList = new ArrayList<String>();
+		String currentBranch = "";
+		try {
+			Git git = Git.open(repoPath.toFile());
+			currentBranch = git.getRepository().getFullBranch();
+            git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return currentBranch;
+	}
+
+
+	@Override
 	public int pull(String path) {
 		Path repoPath = Paths.get(path);
 		try {
@@ -436,4 +467,91 @@ public abstract class AbstractScriptModule implements Scripts
 		}
 		return 0;
 	}
+
+	@Override
+	public int push(String path, String username, String password) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			CredentialsProvider cp = new UsernamePasswordCredentialsProvider(username, password);
+			git.pull().setCredentialsProvider(cp).call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
+	@Override
+	public int createBranch(String path, String branchName) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			git.checkout().setName(branchName).setCreateBranch(true).call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
+	@Override
+	public int checkoutBranch(String path, String oldBranchName, String newBranchName) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			git.branchRename().setOldName(oldBranchName).setNewName(newBranchName).call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
+	@Override
+	public int checkoutBranch(String path, String newBranchName) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			String currentBranch = git.getRepository().getFullBranch();
+			git.branchRename().setOldName(currentBranch).setNewName(newBranchName).call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
+	@Override
+	public int fetch(String path) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			git.fetch().call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
+	@Override
+	public int reset(String path) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			git.reset().call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
+
 }

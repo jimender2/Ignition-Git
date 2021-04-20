@@ -10,6 +10,7 @@ public interface Scripts
     int add(String path, String filter);
     int commit(String path);
     int commit(String path, String commitMsg);
+    int commit(String path, String commitMsg, String author, String email);
 	int clone(String path, String url);
     List listTags(String path);
     List listBranches(String path);
@@ -20,4 +21,11 @@ public interface Scripts
     int pull(String path);
     int pull(String path, String username, String password);
     Dataset getUncommitedChanges(String path);
+    int reset(String path);
+    String listCurrentBranch(String path);
+    int push(String path, String username, String password);
+    int createBranch(String path, String branchName);
+    int checkoutBranch(String path, String branchName);
+    int checkoutBranch(String path, String oldBranchName, String newBranchName);
+    int fetch(String path);
 }

@@ -76,7 +76,7 @@
                     <moduleDescription>${project.description}</moduleDescription>
                     <moduleVersion>1.0.0</moduleVersion>
                     <requiredIgnitionVersion>8.1.3</requiredIgnitionVersion>
-                    <requiredFrameworkVersion>6</requiredFrameworkVersion>
+                    <requiredFrameworkVersion>8</requiredFrameworkVersion>
 
                     <hooks>
                         <hook>
@@ -89,7 +89,7 @@
                         </hook>
                         <hook>
                             <scope>G</scope>
-                            <hookClass>net.jimender2.ignition.git.gateway.GatewayHook</hookClass>
+                            <hookClass>net.jimender2.ignition.git.gateway.ScriptingGatewayHook</hookClass>
                         </hook>
                     </hooks>
 
