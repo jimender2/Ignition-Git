@@ -55,6 +55,7 @@ public class ScriptingGatewayHook extends AbstractGatewayModuleHook
 	@Override
 	public void initializeScriptManager(final ScriptManager manager) {
 		super.initializeScriptManager(manager);
+		manager.addScriptModule("system.jimender2.git", (Object)this.scriptModule, (ScriptFunctionDocProvider)new PropertiesFileDocProvider());
 	}
 	
 	@Override
