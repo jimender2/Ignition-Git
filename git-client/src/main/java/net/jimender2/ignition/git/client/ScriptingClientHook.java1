@@ -14,7 +14,11 @@ public class ScriptingClientHook extends AbstractClientModuleHook
 	@Override
 	public void initializeScriptManager(final ScriptManager manager) {
 		super.initializeScriptManager(manager);
-		manager.addScriptModule("system.jimender2.net.git", (Object)new ClientScriptModule(), (ScriptFunctionDocProvider)new PropertiesFileDocProvider());
+		manager.addScriptModule(
+			"system.jimender2.net.git",
+			(Object)new ClientScriptModule(),
+			(ScriptFunctionDocProvider)new PropertiesFileDocProvider()
+		 	);
 	}
 	
 	@Override

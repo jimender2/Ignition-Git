@@ -89,6 +89,7 @@ public abstract class AbstractScriptModule implements Scripts
 		}
 		return 0;
 	}
+	protected abstract int addrpc(String path);
 
 	@Override
 	public int add(String path, String filter) {
@@ -554,4 +555,17 @@ public abstract class AbstractScriptModule implements Scripts
 		return 0;
 	}
 
+	@Override
+	public int reset(String path, String filePath) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			git.reset().addPath(filePath).call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object)"Error");
+			AbstractScriptModule.log.error((Object)e);
+		}
+		return 0;
+	}
 }

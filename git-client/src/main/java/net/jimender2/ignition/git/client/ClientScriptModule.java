@@ -9,6 +9,14 @@ public class ClientScriptModule extends AbstractScriptModule
     private final Scripts rpc;
 	
     public ClientScriptModule() {
-        this.rpc = (Scripts)ModuleRPCFactory.create("net.jimender2.ignition.git", (Class)Scripts.class, new Class[0]);
+        this.rpc = (Scripts)ModuleRPCFactory.create(
+            "net.jimender2.ignition.git.scripting-function",
+            (Class)Scripts.class
+        );
+    }
+
+    @Override
+    protected int addrpc(String path) {
+        return this.rpc.add(path);
     }
 }

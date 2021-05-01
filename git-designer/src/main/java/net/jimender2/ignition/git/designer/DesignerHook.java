@@ -33,14 +33,14 @@ public class DesignerHook extends AbstractDesignerModuleHook {
 		);
 	}
 
-    @Override
-    public void startup(DesignerContext context, LicenseState activationState) throws Exception {
-        super.startup(context, activationState);
-    }
+    // @Override
+    // public void startup(DesignerContext context, LicenseState activationState) throws Exception {
+    //     super.startup(context, activationState);
+    // }
 
-    @Override
-    public void shutdown() {
-        super.shutdown();
-    }
+    // @Override
+    // public void shutdown() {
+    //     super.shutdown();
+    // }
 
 }

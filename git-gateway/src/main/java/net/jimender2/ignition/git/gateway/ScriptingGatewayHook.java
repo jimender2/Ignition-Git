@@ -14,15 +14,15 @@ import com.inductiveautomation.ignition.gateway.datasource.SRConnection;
 
 public class ScriptingGatewayHook extends AbstractGatewayModuleHook
 {
-	private final GatewayScriptModule scriptModule;
-	private final Logger log;
+	private final GatewayScriptModule scriptModule = new GatewayScriptModule();
+	private final Logger log = Logger.getLogger((Class)this.getClass());
 	private GatewayContext context;
 
 
-	public ScriptingGatewayHook() {
-		this.scriptModule = new GatewayScriptModule();
-		this.log = Logger.getLogger((Class)this.getClass());
-	}
+	// public ScriptingGatewayHook() {
+	// 	this.scriptModule = new GatewayScriptModule();
+	// 	this.log = Logger.getLogger((Class)this.getClass());
+	// }
 	
 	@Override
 	public void setup(final GatewayContext gatewayContext) {
@@ -48,13 +48,13 @@ public class ScriptingGatewayHook extends AbstractGatewayModuleHook
 	}
 	
 	@Override
-	public void notifyLicenseStateChanged(final LicenseState licenseState) {
-		super.notifyLicenseStateChanged(licenseState);
-	}
-	
-	@Override
 	public void initializeScriptManager(final ScriptManager manager) {
 		super.initializeScriptManager(manager);
+		manager.addScriptModule(
+            "net.jimender2.ignition.git",
+            scriptModule,
+			new PropertiesFileDocProvider()
+        );
 	}
 	
 	@Override
