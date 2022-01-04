@@ -13,33 +13,32 @@
     <description>git Ignition Module</description>
 
     <properties>
-        <ignition-sdk-version>8.0.0</ignition-sdk-version>
+        <ignition-sdk-version>8.1.0-SNAPSHOT</ignition-sdk-version>
     </properties>
 
     <modules>
         <module>git-build</module>
         <module>git-client</module>
         <module>git-common</module>
-        <module>git-designer</module>
         <module>git-gateway</module>
     </modules>
 
     <pluginRepositories>
         <pluginRepository>
             <id>releases</id>
-            <url>http://nexus.inductiveautomation.com:8081/nexus/content/repositories/inductiveautomation-releases</url>
+            <url>https://nexus.inductiveautomation.com/repository/inductiveautomation-releases</url>
         </pluginRepository>
     </pluginRepositories>
 
     <repositories>
         <repository>
             <id>releases</id>
-            <url>http://nexus.inductiveautomation.com:8081/nexus/content/repositories/inductiveautomation-releases</url>
+            <url>https://nexus.inductiveautomation.com/repository/inductiveautomation-releases</url>
         </repository>
 
         <repository>
             <id>snapshots</id>
-            <url>http://nexus.inductiveautomation.com:8081/nexus/content/repositories/inductiveautomation-snapshots</url>
+            <url>https://nexus.inductiveautomation.com/repository/inductiveautomation-snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -48,8 +47,7 @@
 
         <repository>
             <id>thirdparty</id>
-            <url>http://nexus.inductiveautomation.com:8081/nexus/content/repositories/inductiveautomation-thirdparty
-            </url>
+            <url>https://nexus.inductiveautomation.com/repository/inductiveautomation-thirdparty</url>
         </repository>
     </repositories>
 
