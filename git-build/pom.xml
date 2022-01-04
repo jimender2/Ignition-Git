@@ -25,11 +25,6 @@
         </dependency>
         <dependency>
             <groupId>net.jimender2.ignition</groupId>
-            <artifactId>git-designer</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.jimender2.ignition</groupId>
             <artifactId>git-gateway</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -62,10 +57,6 @@
                             <scope>CDG</scope>
                         </projectScope>
                         <projectScope>
-                            <name>git-designer</name>
-                            <scope>CD</scope>
-                        </projectScope>
-                        <projectScope>
                             <name>git-gateway</name>
                             <scope>G</scope>
                         </projectScope>
@@ -82,10 +73,6 @@
                         <hook>
                             <scope>C</scope>
                             <hookClass>net.jimender2.ignition.git.client.ClientHook</hookClass>
-                        </hook>
-                        <hook>
-                            <scope>D</scope>
-                            <hookClass>net.jimender2.ignition.git.designer.DesignerHook</hookClass>
                         </hook>
                         <hook>
                             <scope>G</scope>
