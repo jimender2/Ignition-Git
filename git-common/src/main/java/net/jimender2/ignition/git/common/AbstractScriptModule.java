@@ -474,7 +474,7 @@ public abstract class AbstractScriptModule implements Scripts
 		try {
 			Git git = Git.open(repoPath.toFile());
 			CredentialsProvider cp = new UsernamePasswordCredentialsProvider(username, password);
-			git.pull().setCredentialsProvider(cp).call();
+			git.push().setCredentialsProvider(cp).call();
 			git.close();
 		} catch (Exception e) {
 			AbstractScriptModule.log.error((Object)"Error");
