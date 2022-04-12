@@ -7,19 +7,18 @@ import com.inductiveautomation.ignition.common.script.hints.ScriptFunctionDocPro
 import com.inductiveautomation.ignition.common.script.hints.PropertiesFileDocProvider;
 import com.inductiveautomation.ignition.common.script.ScriptManager;
 import com.inductiveautomation.vision.api.client.AbstractClientModuleHook;
-import com.inductiveautomation.*;
 
-public class ScriptingClientHook extends AbstractClientModuleHook
-{
+public class ScriptingClientHook extends AbstractClientModuleHook {
 	@Override
 	public void initializeScriptManager(final ScriptManager manager) {
 		super.initializeScriptManager(manager);
-		manager.addScriptModule("system.jimender2.net.git", (Object)new ClientScriptModule(), (ScriptFunctionDocProvider)new PropertiesFileDocProvider());
+		manager.addScriptModule("system.jimender2.net.git", (Object) new ClientScriptModule(),
+				(ScriptFunctionDocProvider) new PropertiesFileDocProvider());
 	}
-	
+
 	@Override
 	public void shutdown() {
 		super.shutdown();
 	}
-	
+
 }
