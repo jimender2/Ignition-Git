@@ -40,11 +40,11 @@ public class ScriptingGatewayHook extends AbstractGatewayModuleHook
 	
 	@Override
 	public boolean isFreeModule() {
-		return false;
+		return true;
 	}
 	
 	public boolean isTrialExpired() {
-		return false;
+		return true;
 	}
 	
 	@Override
