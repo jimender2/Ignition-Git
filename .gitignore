@@ -38,3 +38,5 @@ keystore
 make.sh
 *.p7b
 .vscode
+keystoreOld
+*.old
