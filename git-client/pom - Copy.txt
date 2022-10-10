@@ -7,7 +7,7 @@
     <parent>
         <artifactId>git</artifactId>
         <groupId>net.jimender2.ignition</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>git-client</artifactId>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>net.jimender2.ignition</groupId>
             <artifactId>git-common</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency>
