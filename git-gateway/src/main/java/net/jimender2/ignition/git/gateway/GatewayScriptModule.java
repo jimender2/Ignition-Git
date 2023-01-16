@@ -38,7 +38,7 @@ import net.jimender2.ignition.git.common.AbstractScriptModule;
 
 // 	@Override
 // 	public void startup(final LicenseState licenseState) {
-	
+
 // 	}
 
 // 	@Override
@@ -52,7 +52,6 @@ import net.jimender2.ignition.git.common.AbstractScriptModule;
 // 	}
 // }
 
-public class GatewayScriptModule extends AbstractScriptModule
-{
+public class GatewayScriptModule extends AbstractScriptModule {
 
 }

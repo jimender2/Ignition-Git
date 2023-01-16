@@ -15,38 +15,39 @@ import org.slf4j.LoggerFactory;
 
 public class ClientHook extends AbstractClientModuleHook {
 
-    // private final Logger logger = LoggerFactory.getLogger(getClass());
+	// private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    // @Override
-    // public void startup(ClientContext context, LicenseState activationState) throws Exception {
-    //     super.startup(context, activationState);
-    // }
+	// @Override
+	// public void startup(ClientContext context, LicenseState activationState)
+	// throws Exception {
+	// super.startup(context, activationState);
+	// }
 
-    // @Override
-    // public void shutdown() {
-    //     super.shutdown();
-    // }
+	// @Override
+	// public void shutdown() {
+	// super.shutdown();
+	// }
 
 	@Override
 	public void initializeScriptManager(final ScriptManager manager) {
 		super.initializeScriptManager(manager);
-		manager.addScriptModule("system.jimender2.git", (Object)new ClientScriptModule(), (ScriptFunctionDocProvider)new PropertiesFileDocProvider());
+		manager.addScriptModule("system.jimender2.git", (Object) new ClientScriptModule(),
+				(ScriptFunctionDocProvider) new PropertiesFileDocProvider());
 	}
-	
+
 	@Override
 	public void shutdown() {
 		super.shutdown();
 	}
-	
+
 	@Override
 	public void notifyActivationStateChanged(final LicenseState licenseState) {
 		super.notifyActivationStateChanged(licenseState);
 	}
-	
+
 	@Override
 	public void startup(final ClientContext context, final LicenseState activationState) throws Exception {
 		super.startup(context, activationState);
 	}
-
 
 }
