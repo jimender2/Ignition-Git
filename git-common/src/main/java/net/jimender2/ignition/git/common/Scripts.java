@@ -22,6 +22,7 @@ public interface Scripts
     int pull(String path, String username, String password);
     Dataset getUncommitedChanges(String path);
     int reset(String path);
+    int reset(String path, String file);
     String listCurrentBranch(String path);
     int push(String path, String username, String password);
     int createBranch(String path, String branchName);

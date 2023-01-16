@@ -548,8 +548,23 @@ public abstract class AbstractScriptModule implements Scripts
 			git.reset().call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
+		}
+		return 0;
+	}
+
+	@Override
+	public int reset(String path, String file) {
+		Path repoPath = Paths.get(path);
+		try {
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object) "Success");
+			git.reset().addPath(file).call();
+			git.close();
+		} catch (Exception e) {
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
