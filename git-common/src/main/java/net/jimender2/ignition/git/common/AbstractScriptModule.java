@@ -31,6 +31,8 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.CredentialsProvider;
+import org.eclipse.jgit.transport.PushResult;
+import org.eclipse.jgit.transport.RemoteRefUpdate;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
 public abstract class AbstractScriptModule implements Scripts {
@@ -471,7 +473,16 @@ public abstract class AbstractScriptModule implements Scripts {
 		try {
 			Git git = Git.open(repoPath.toFile());
 			CredentialsProvider cp = new UsernamePasswordCredentialsProvider(username, password);
-			git.push().setCredentialsProvider(cp).call();
+			Iterable<PushResult> results = git.push().setCredentialsProvider(cp).call();
+			for (PushResult result : results) {
+				for (RemoteRefUpdate update : result.getRemoteUpdates()) {
+					if (update.getStatus() != RemoteRefUpdate.Status.OK
+							&& update.getStatus() != RemoteRefUpdate.Status.UP_TO_DATE) {
+						String error = "Push failed: " + update.getStatus();
+						throw new RuntimeException(error);
+					}
+				}
+			}
 			git.close();
 		} catch (Exception e) {
 			AbstractScriptModule.log.error((Object) "Error");
