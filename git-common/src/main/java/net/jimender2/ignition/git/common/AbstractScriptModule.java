@@ -33,9 +33,8 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
-public abstract class AbstractScriptModule implements Scripts
-{
-	private static final Logger log = Logger.getLogger("Jimender2");	
+public abstract class AbstractScriptModule implements Scripts {
+	private static final Logger log = Logger.getLogger("Jimender2");
 
 	@Override
 	public int init(String path) {
@@ -44,48 +43,48 @@ public abstract class AbstractScriptModule implements Scripts
 			Files.delete(localPath.toPath());
 			Git git = Git.init().setDirectory(localPath).call();
 			File myFile = new File(git.getRepository().getDirectory().getParent(), "testfile");
-            if (!myFile.createNewFile()) {
-                throw new IOException("Could not create file " + myFile);
-            }
+			if (!myFile.createNewFile()) {
+				throw new IOException("Could not create file " + myFile);
+			}
 
-            // run the add-call
-            git.add().addFilepattern("testfile").call();
+			// run the add-call
+			git.add().addFilepattern("testfile").call();
 
-            git.commit().setMessage("Initial commit").call();
-			AbstractScriptModule.log.error((Object)"Success");
-            git.close();
+			git.commit().setMessage("Initial commit").call();
+			AbstractScriptModule.log.error((Object) "Success");
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
 
 	// @Override
 	// public int init(String path) {
-	// 	Path repoPath = Paths.get(path);
-	// 	try {
-    //         Git git = Git.init().setDirectory(repoPath.toFile()).call();
-	// 		AbstractScriptModule.log.error((Object)"Success");
-    //         git.close();
-	// 	} catch (Exception e) {
-	// 		AbstractScriptModule.log.error((Object)"Error");
-	// 		AbstractScriptModule.log.error((Object)e);
-	// 	}
-	// 	return 0;
+	// Path repoPath = Paths.get(path);
+	// try {
+	// Git git = Git.init().setDirectory(repoPath.toFile()).call();
+	// AbstractScriptModule.log.error((Object)"Success");
+	// git.close();
+	// } catch (Exception e) {
+	// AbstractScriptModule.log.error((Object)"Error");
+	// AbstractScriptModule.log.error((Object)e);
+	// }
+	// return 0;
 	// }
 
 	@Override
 	public int add(String path) {
 		Path repoPath = Paths.get(path);
 		try {
-            Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
-            git.add().addFilepattern(".").call();
-            git.close();
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object) "Success");
+			git.add().addFilepattern(".").call();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -94,43 +93,43 @@ public abstract class AbstractScriptModule implements Scripts
 	public int add(String path, String filter) {
 		Path repoPath = Paths.get(path);
 		try {
-            Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
-            git.add().addFilepattern(filter).call();
-            git.close();
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object) "Success");
+			git.add().addFilepattern(filter).call();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
 
-    @Override
+	@Override
 	public int commit(String path) {
 		Path repoPath = Paths.get(path);
 		try {
-            Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object) "Success");
 			git.commit().setMessage("Added testfile").call();
-            git.close();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
 
-    @Override
+	@Override
 	public int commit(String path, String commitMsg) {
 		Path repoPath = Paths.get(path);
 		try {
-            Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object) "Success");
 			git.commit().setMessage(commitMsg).call();
-            git.close();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -139,87 +138,87 @@ public abstract class AbstractScriptModule implements Scripts
 	public int commit(String path, String commitMsg, String author, String email) {
 		Path repoPath = Paths.get(path);
 		try {
-            Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
+			Git git = Git.open(repoPath.toFile());
+			AbstractScriptModule.log.error((Object) "Success");
 			git.commit().setMessage(commitMsg).setAuthor(author, email).call();
-            git.close();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
 
-    @Override
+	@Override
 	public int clone(String path, String url) {
 		try {
-			AbstractScriptModule.log.error((Object)"Success");
+			AbstractScriptModule.log.error((Object) "Success");
 			File localPath = File.createTempFile(path, "");
-            Git git = Git.cloneRepository()
-                .setURI(url)
-                .setDirectory(localPath)
-                .call();
-            git.close();
+			Git git = Git.cloneRepository()
+					.setURI(url)
+					.setDirectory(localPath)
+					.call();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
 
-    @Override
+	@Override
 	public List listTags(String path) {
 		Path repoPath = Paths.get(path);
 		List<String> tagList = new ArrayList<String>();
 		try {
 			Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
-            List<Ref> call = git.tagList().call();
-            for (Ref ref : call) {
-                tagList.add(ref.getName().toString());
-            }
-            git.close();
+			AbstractScriptModule.log.error((Object) "Success");
+			List<Ref> call = git.tagList().call();
+			for (Ref ref : call) {
+				tagList.add(ref.getName().toString());
+			}
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return tagList;
 	}
 
-    @Override
+	@Override
 	public List listBranches(String path) {
 		Path repoPath = Paths.get(path);
 		List<String> tagList = new ArrayList<String>();
 		try {
 			Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
+			AbstractScriptModule.log.error((Object) "Success");
 			List<Ref> call = git.branchList().call();
-            for (Ref ref : call) {
-                tagList.add(ref.getName().toString());
-            }
-            git.close();
+			for (Ref ref : call) {
+				tagList.add(ref.getName().toString());
+			}
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return tagList;
 	}
 
-    @Override
+	@Override
 	public List walkAllCommits(String path) {
 		Path repoPath = Paths.get(path);
 		List<String> tagList = new ArrayList<String>();
 		try {
 			Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
-            Iterable<RevCommit> commits = git.log().all().call();
-            for (RevCommit commit : commits) {
-                tagList.add(commit.toString());
-            }
-            git.close();
+			AbstractScriptModule.log.error((Object) "Success");
+			Iterable<RevCommit> commits = git.log().all().call();
+			for (RevCommit commit : commits) {
+				tagList.add(commit.toString());
+			}
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return tagList;
 	}
@@ -240,22 +239,22 @@ public abstract class AbstractScriptModule implements Scripts
 		colNames.add("treeID");
 
 		Class[] types = new Class[colNames.size()];
-        for (int i = 0; i < types.length; i++) {
-            types[i] = String.class;
-        }
-        
+		for (int i = 0; i < types.length; i++) {
+			types[i] = String.class;
+		}
+
 		DatasetBuilder builder = new DatasetBuilder();
 		builder.colNames(colNames.toArray(new String[0]));
 		builder.colTypes(types);
 
 		try {
 			Git git = Git.open(repoPath.toFile());
-			AbstractScriptModule.log.error((Object)"Success");
-            Iterable<RevCommit> commits = git.log().all().call();
-            for (RevCommit commit : commits) {
+			AbstractScriptModule.log.error((Object) "Success");
+			Iterable<RevCommit> commits = git.log().all().call();
+			for (RevCommit commit : commits) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = commit.getShortMessage().toString();
-				rowData[1] = commit.getCommitTime()+"";
+				rowData[1] = commit.getCommitTime() + "";
 				rowData[2] = commit.getFullMessage().toString();
 				rowData[3] = commit.getAuthorIdent().getName().toString();
 				rowData[4] = commit.getAuthorIdent().getEmailAddress().toString();
@@ -265,11 +264,11 @@ public abstract class AbstractScriptModule implements Scripts
 				rowData[8] = commit.getTree().getId().toString();
 
 				builder.addRow(rowData);
-            }
-            git.close();
+			}
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		ds = builder.build();
 		return ds != null ? ds : new BasicDataset();
@@ -284,10 +283,10 @@ public abstract class AbstractScriptModule implements Scripts
 		colNames.add("msg");
 
 		Class[] types = new Class[colNames.size()];
-        for (int i = 0; i < types.length; i++) {
-            types[i] = String.class;
-        }
-        
+		for (int i = 0; i < types.length; i++) {
+			types[i] = String.class;
+		}
+
 		DatasetBuilder builder = new DatasetBuilder();
 		builder.colNames(colNames.toArray(new String[0]));
 		builder.colTypes(types);
@@ -295,94 +294,93 @@ public abstract class AbstractScriptModule implements Scripts
 		try {
 			Git git = Git.open(repoPath.toFile());
 			Status status = git.status().call();
-			AbstractScriptModule.log.error((Object)"Success");
+			AbstractScriptModule.log.error((Object) "Success");
 			Set<String> conflicting = status.getConflicting();
-			for(String conflict : conflicting) {
+			for (String conflict : conflicting) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Conflicting";
 				rowData[1] = conflict.toString();
-				
+
 				builder.addRow(rowData);
-            }
+			}
 			Set<String> added = status.getAdded();
-			for(String add : added) {
+			for (String add : added) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Added";
 				rowData[1] = add.toString();
-				
+
 				builder.addRow(rowData);
-            }
+			}
 			Set<String> changed = status.getChanged();
-			for(String change : changed) {
+			for (String change : changed) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Changed";
 				rowData[1] = change.toString();
-				
+
 				builder.addRow(rowData);
-            }
+			}
 			Set<String> missing = status.getMissing();
-			for(String miss : missing) {
+			for (String miss : missing) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Missing";
 				rowData[1] = miss.toString();
-				
+
 				builder.addRow(rowData);
-            }
-			
+			}
+
 			Set<String> modified = status.getModified();
-			for(String modify : modified) {
+			for (String modify : modified) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Modification";
 				rowData[1] = modify.toString();
-				
+
 				builder.addRow(rowData);
 			}
 
 			Set<String> removed = status.getRemoved();
-			for(String remove : removed) {
+			for (String remove : removed) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Remove";
 				rowData[1] = remove.toString();
-				
+
 				builder.addRow(rowData);
 			}
 
 			Set<String> uncommittedChanges = status.getUncommittedChanges();
-			for(String uncommitted : uncommittedChanges) {
+			for (String uncommitted : uncommittedChanges) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Uncommitted";
 				rowData[1] = uncommitted.toString();
-				
+
 				builder.addRow(rowData);
 			}
 
 			Set<String> untracked = status.getUntracked();
-			for(String untrack : untracked) {
+			for (String untrack : untracked) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Untracked File";
 				rowData[1] = untrack.toString();
-				
+
 				builder.addRow(rowData);
 			}
 
 			Set<String> untrackedFolders = status.getUntrackedFolders();
-			for(String untrack : untrackedFolders) {
+			for (String untrack : untrackedFolders) {
 				String[] rowData = new String[colNames.size()];
 				rowData[0] = "Untracked Folder";
 				rowData[1] = untrack.toString();
-				
+
 				builder.addRow(rowData);
 			}
 
-            git.close();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		ds = builder.build();
 		return ds != null ? ds : new BasicDataset();
 	}
-
 
 	@Override
 	public List getConflictingFiles(String path) {
@@ -391,14 +389,14 @@ public abstract class AbstractScriptModule implements Scripts
 		try {
 			Git git = Git.open(repoPath.toFile());
 			Status status = git.status().call();
-            Set<String> conflicting = status.getConflicting();
-            for(String conflict : conflicting) {
-            	fileList.add(conflict.toString());
-            }
-            git.close();
+			Set<String> conflicting = status.getConflicting();
+			for (String conflict : conflicting) {
+				fileList.add(conflict.toString());
+			}
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return fileList;
 	}
@@ -410,14 +408,14 @@ public abstract class AbstractScriptModule implements Scripts
 		try {
 			Git git = Git.open(repoPath.toFile());
 			Status status = git.status().call();
-            Set<String> added = status.getAdded();
-            for(String add : added) {
-            	fileList.add(add.toString());
-            }
-            git.close();
+			Set<String> added = status.getAdded();
+			for (String add : added) {
+				fileList.add(add.toString());
+			}
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return fileList;
 	}
@@ -430,14 +428,13 @@ public abstract class AbstractScriptModule implements Scripts
 		try {
 			Git git = Git.open(repoPath.toFile());
 			currentBranch = git.getRepository().getFullBranch();
-            git.close();
+			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return currentBranch;
 	}
-
 
 	@Override
 	public int pull(String path) {
@@ -447,8 +444,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.pull().call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -462,8 +459,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.pull().setCredentialsProvider(cp).call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -477,8 +474,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.push().setCredentialsProvider(cp).call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -491,8 +488,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.checkout().setName(branchName).setCreateBranch(true).call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -505,8 +502,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.branchRename().setOldName(oldBranchName).setNewName(newBranchName).call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -520,8 +517,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.branchRename().setOldName(currentBranch).setNewName(newBranchName).call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
@@ -534,8 +531,8 @@ public abstract class AbstractScriptModule implements Scripts
 			git.fetch().call();
 			git.close();
 		} catch (Exception e) {
-			AbstractScriptModule.log.error((Object)"Error");
-			AbstractScriptModule.log.error((Object)e);
+			AbstractScriptModule.log.error((Object) "Error");
+			AbstractScriptModule.log.error((Object) e);
 		}
 		return 0;
 	}
