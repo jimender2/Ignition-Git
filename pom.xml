@@ -6,7 +6,7 @@
 
     <groupId>net.jimender2.ignition</groupId>
     <artifactId>git</artifactId>
-    <version>1.0.1</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <name>Git Ignition Module</name>
@@ -14,6 +14,7 @@
 
     <properties>
         <ignition-sdk-version>8.1.0</ignition-sdk-version>
+        <revision>1.0.1</revision>
     </properties>
 
     <modules>

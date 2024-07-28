@@ -7,7 +7,7 @@
     <parent>
         <artifactId>git</artifactId>
         <groupId>net.jimender2.ignition</groupId>
-        <version>1.0.1</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>git-build</artifactId>
@@ -16,17 +16,17 @@
         <dependency>
             <groupId>net.jimender2.ignition</groupId>
             <artifactId>git-client</artifactId>
-            <version>1.0.1</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>net.jimender2.ignition</groupId>
             <artifactId>git-common</artifactId>
-            <version>1.0.1</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>net.jimender2.ignition</groupId>
             <artifactId>git-gateway</artifactId>
-            <version>1.0.1</version>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 
